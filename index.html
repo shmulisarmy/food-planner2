@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpine.js Example</title>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <link rel="stylesheet" href="main.css">
+    <script src="main.js">
+    </script>
+</head>
+
+<body> 
+
+
+    <fieldset id="Ingredients">
+
+
+    <legend>Available Ingredients</legend>
+    <div x-data="availableIngredients">
+        <ul>
+
+            <template x-for="([key, value]) in Array.from(availableIngredients.entries())">
+                <li>
+                    <p x-text="`${key}: ${value}`"></p>
+                </li>
+            </template>
+        </ul>
+    </div>
+
+</fieldset>
+
+
+
+
+    
+    
+    <fieldset id="recipes">
+
+    <legend>Recipe List</legend>
+    <div id="recipes-container" x-data="recipes">
+
+                <template x-for="recipe in recipes" :key="recipe.name">
+                    <div class="recipie">
+                        <img x-bind:src="recipe.imageUrl">
+                        <div class="text">
+
+                            <button @click="selectRecipe(recipe)" x-text="recipe.name"></button>
+                            <details>
+                                <summary>Ingredients</summary>
+                                <ul>
+                                    <template x-for="[amount, ingredient] in Array.from(recipe.ingredients.entries())">
+                                        <li><span x-text="ingredient"></span> : <span x-text="amount"></span></li>
+                                    </template>
+                                </ul>
+                            </details>
+                            <div class="factory-buttons">
+
+                                <div x-show="canMakeRecipe(recipe)">
+                                    <button @click="makeRecipe(recipe)">Make</button>
+                                </div>
+                                <div x-show="isMakingRecipe(recipe)">
+                                    <button @click="unMakeRecipe(recipe)">Unmake</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </ul>
+    </div>
+
+</fieldset>
+
+<fieldset id="Recipes-Making">
+
+
+    <legend>Recipes Making</legend>
+    <div x-data="recipesMaking">
+        <ul>
+            <template x-for="([key, value]) in Array.from(recipesMaking.entries())">
+                <li>
+                    <p x-text="`${key}: ${value}`"></p>
+                </li>
+            </template>
+        </ul>
+    </div>
+
+</fieldset>
+
+
+
+
+<div class="on-land">
+    
+</div>
+</body>
+
+
+</html>

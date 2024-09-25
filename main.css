@@ -1,0 +1,40 @@
+body{
+    display: flex;
+}
+
+#recipes{
+    flex-grow: 10;
+}
+
+#recipes-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    grid-gap: 10px;
+}
+
+.recipie{
+    border: 1px solid black;
+    margin: 10px;
+
+    img{
+        width: 100%;
+        aspect-ratio: 16/9;
+        object-fit: cover;
+    }
+
+    .text{
+        padding: 10px;
+        
+    }
+
+
+    .factory-buttons{
+        display: none;
+    }
+
+    &:hover{
+        .factory-buttons{
+            display: block;
+        }
+    }
+}
